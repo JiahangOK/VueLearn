@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h1>{{msg}}</h1>
+  <input type="text" v-bind:value="msg" style="width: 100%;" v-model="msg">
+</div>
+
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      msg: "we are young. we are young. we are young. we are young.",
+    },
+    methods: {}
+  })
+
+</script>
+</body>
+</html>

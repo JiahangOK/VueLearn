@@ -15,6 +15,7 @@
   <p v-cloak>+++++++++++++ {{msg}} ---------------------------</p>
   <h4 v-text="msg"></h4>
   <div v-html="msg2"></div>
+  <input type="button" value="按钮" v-bind:title="myTitle">
   <input type="button" value="按钮" v-on:click="show">
 </div>
 <script src="js/vue.js"></script>

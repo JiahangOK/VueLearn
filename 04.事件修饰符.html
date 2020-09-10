@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+  <style>
+    .inner {
+      height: 150px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="inner" @click="divHandler">
+    <input type="button" value="click it" @click.stop="btnHandler">
+  </div>
+  <!--有了.prevent，点击就不会跳转了，跳转就是个默认事件-->
+  <a href="https://www.baidu.com" @click.prevent="linkClick">ask baidu!</a>
+  <!--.capture捕获事件，变成了从外到里的触发-->
+  <div class="inner" @click.capture="divHandler">
+    <input type="button" value="click it" @click="btnHandler">
+  </div>
+
+  <div class="inner" @click.self="divHandler">
+    <input type="button" value="click it" @click="btnHandler">
+  </div>
+  <a href="https://www.baidu.com" @click.prevent.once="linkClick">ask baidu!</a>
+</div>
+
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {
+      divHandler() {
+        console.log("div event.");
+      },
+      btnHandler() {
+        console.log("button event.")
+      },
+      linkClick() {
+        console.log("a event.");
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

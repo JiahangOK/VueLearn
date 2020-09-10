@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="浪起来" @click="start">
+  <input type="button" value="低调" @click="end">
+  <h4>{{msg}}</h4>
+</div>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      msg:'猥琐发育，别浪~~！！',
+      intervalID: null
+    },
+    methods:{
+      start:function () {
+        // console.log(this.msg)
+        if(this.intervalID != null) return;
+
+        this.intervalID = setInterval(() => {
+          var head = this.msg.substring(0, 1)
+          var tile = this.msg.substring(1)
+          this.msg =  tile+head
+        }, 400)
+
+      },
+      end: function (){
+        clearInterval(this.intervalID)
+        this.intervalID = null;
+      },
+    }
+  })
+</script>
+</body>
+</html>
