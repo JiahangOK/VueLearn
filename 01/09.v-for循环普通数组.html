@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <p v-for="(item, i) in list">{{i}} : {{item}}</p>
+</div>
+
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      list: [1,2,3,4,5],
+    },
+    methods: {}
+  })
+
+</script>
+</body>
+</html>

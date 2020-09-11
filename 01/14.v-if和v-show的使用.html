@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="button" @click="shift" value="shift">
+  <!--  v-if会删除和创建dom元素   切换性能消耗较高-->
+  <!--  v-show只是隐藏，不会重新进行dom元素的删除和创建    有较高的初始渲染消耗-->
+  <h3 v-if="flag">controlled by v-if</h3>
+  <h3 v-show="flag">controlled by v-show</h3>
+
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      flag: true,
+    },
+    methods: {
+      shift() {
+        this.flag = !this.flag;
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

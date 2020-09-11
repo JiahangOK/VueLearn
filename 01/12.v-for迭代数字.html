@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--  注意：使用v-for迭代数字是从1开始的-->
+  <p v-for="count in 10"> this is {{count}} loop.</p>
+
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {}
+  })
+
+</script>
+</body>
+</html>
