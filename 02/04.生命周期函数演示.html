@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h3 id="h3">{{msg}}</h3>
+  <input type="button" @click="msg='no'" value="change">
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      msg: 'ok'
+    },
+    methods: {
+      show() {
+        console.log('执行了show')
+      }
+
+    },
+    beforeCreate() {
+      // console.log(this.msg)
+      // this.show()
+      // data methods 没有初始化
+
+    },
+    created() {
+      console.log(this.msg)
+      this.show()
+      // data methods 已经初始化好了
+    },
+    beforeMount() {
+      // 还没有渲染到页面上
+      console.log(document.getElementById('h3').innerText)
+    },
+    mounted() {
+      // 已经渲染在了页面上
+      console.log(document.getElementById('h3').innerText)
+    },
+    // 运行中的两个事件
+    beforeUpdate() {
+      // 显示的数据还是旧的，但是data已经改变，是最新的
+      console.log('界面上的元素内容；' + document.getElementById('h3').innerText)
+      console.log('data中的msg数据是：' + this.msg)
+    },
+    updated() {
+      // 显示的数据和data都是最新的
+      console.log('updated()界面上的元素内容；' + document.getElementById('h3').innerText)
+      console.log('updated()后data中的msg数据是：' + this.msg)
+    }
+  })
+
+</script>
+</body>
+</html>
