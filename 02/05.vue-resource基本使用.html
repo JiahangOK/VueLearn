@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <script src="js/vue.js"></script>
+  <script src="js/vue-resource-1.3.4.js"></script>
 </head>
 <body>
 <div id="app">
-
+  <input type="button" value="get request" @click="getInfo">
+  <input type="button" value="post request" @click="postInfo">
+  <input type="button" value="jsonp request" @click="jsonpInfo">
 </div>
 
 
@@ -18,7 +21,21 @@
 
     },
     methods: {
-
+      getInfo(){
+        this.$http.get('http://vue.studyit.io/api/getlunbo', {}).then(function (result){
+          console.log(result.body);
+        })
+      },
+      postInfo(){
+        this.$http.post('http://vue.studyit.io/api/post',{},{emulateJSON:true}).then(function (result){
+          console.log(result.body);
+        })
+      },
+      jsonpInfo(){
+        this.$http.jsonp('http://vue.studyit.io/api/jsonp').then(result =>{
+          console.log(result)
+        })
+      }
     }
   })
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <mycom3></mycom3>
+</div>
+
+<div id="app2">
+  <mycom3></mycom3>
+  <login></login>
+</div>
+<template id="tmp1">
+  <div>
+    <h1>通过template元素，创建组件</h1>
+    <h4>好用</h4>
+  </div>
+
+</template>
+
+<script>
+  Vue.component('mycom3',{
+    template: '#tmp1'
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+
+    }
+  })
+
+  let vm2 = new Vue({
+    el: '#app2',
+    data: {
+
+    },
+    methods: {
+
+    },
+    components: {
+      // 定义实例内部私有组件
+      login:{
+        template: '<h1>私有组件</h1>'
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
