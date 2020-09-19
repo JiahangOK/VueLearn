@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+  <style>
+    .router-link-active{
+      color: red;
+      font-weight: 800;
+      font-size: 80px;
+    }
+    .myActive{
+      color: green;
+      font-weight: 800;
+      font-size: 80px;
+    }
+    .v-enter,
+    .v-leave-to{
+      opacity: 0;
+      transform: translateX(140px);
+    }
+
+    .v-enter-active,
+    .v-leave-active{
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--  <a href="#/login">登录</a>-->
+  <!--  <a href="#/register">注册</a>-->
+  <!--  router-link默认是a链接-->
+  <router-link to="/login" tag="span">登录</router-link>
+  <router-link to="/register">注册</router-link>
+  <transition mode="out-in">
+    <router-view></router-view>
+  </transition>
+
+</div>
+
+
+<script>
+  let login = {
+    template: '<h1>登录组件</h1>'
+  }
+  let register = {
+    template: '<h1>注册组件</h1>'
+  }
+  let routerObj = new VueRouter({
+    // route表示路由匹配规则
+    routes: [
+      // {path:'/', component: login},
+      {path: '/', redirect: '/login'}, // 重定向
+      {path: '/login', component: login},
+      {path: '/register', component: register}
+    ],
+    linkActiveClass: 'myActive'
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {},
+    router: routerObj // 将路由规则对象注册到vm实例上，用于监听url变化，然后展示对应图像
+  })
+
+</script>
+</body>
+</html>
