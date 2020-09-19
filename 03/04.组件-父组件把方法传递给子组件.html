@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <com2 v-on:func="show">
+
+  </com2>
+</div>
+
+<template id="tmpl">
+  <div>
+    <h1>这是子组件</h1>
+    <input type="button" value="click" @click="myclick">
+  </div>
+</template>
+
+<script>
+  let com2 = {
+    template:'#tmpl',
+    methods: {
+      myclick(){
+        // emit代表触发
+        this.$emit('func', 'hhh', 'xxx')
+      }
+    }
+  }
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+      show(data, data2){
+        console.log('父组件show() ---' + data + data2)
+      }
+    },
+    components:{
+      com2
+    }
+  })
+
+</script>
+</body>
+</html>

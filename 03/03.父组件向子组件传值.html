@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <com1 v-bind:parentmsg="msg"></com1>
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      msg: '123 啊-父组件中的数据' // 可读可写
+    },
+    methods: {},
+    components: {
+      com1: {
+        template: '<h1>这是子组件{{parentmsg}}</h1>',
+        props: ['parentmsg'] // 只可读
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

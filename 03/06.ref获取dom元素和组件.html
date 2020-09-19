@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="获取元素" @click="getElement">
+  <h3 id="myh3" ref="myh3">哈哈，今天天气太好了！！</h3>
+  <hr>
+  <login ref="mylogin"></login>
+</div>
+
+
+<script>
+  let login = {
+    template: '<h1>登陆组件</h1>',
+    data(){
+      return{
+        msg: 'son msg'
+      }
+    },
+    methods:{
+      show(){
+        console.log('son show()')
+      }
+    }
+  }
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+      getElement(){
+        // console.log(document.getElementById('myh3').innerText)
+        // console.log(this.$refs.myh3.innerText)
+        console.log(this.$refs.mylogin.msg)
+        this.$refs.mylogin.show()
+      }
+
+    },
+    components: {
+      login: login
+    }
+  })
+
+</script>
+</body>
+</html>

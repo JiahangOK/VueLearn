@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+  <div class="comment-list">
+    <comment-box v-on:func="updateList"></comment-box>
+  </div>
+  <div class="comment-list">
+    <ul class="list-group">
+      <li class="list-group-item" v-for="item in list" :key="item.id">
+        <span class="badge">评论人：{{item.user}}</span>
+        {{item.content}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<template id="tml">
+  <div>
+    <div class="form-group">
+      <label>评论人</label>
+      <input type="text" class="form-control" v-model="user_name">
+    </div>
+    <div class="form-group">
+      <label>内容</label>
+      <textarea class="form-control" v-model="comment_content"></textarea>
+    </div>
+    <div class="form-group comment-container">
+      <input type="button" value="发表评论" class="btn btn-primary" @click="commit()">
+    </div>
+  </div>
+</template>
+<script>
+  let commentBox = {
+    template: '#tml',
+    data() {
+      return {
+        user_name: '',
+        comment_content: ''
+      }
+    },
+    methods: {
+      commit(){
+        // emit代表触发
+        this.$emit('func', {id: Date.now(), user: this.user_name, content: this.comment_content})
+        this.user_name = this.comment_content = ''
+      }
+    }
+  }
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      list: [
+        {id: Date.now(), user: '李白', content: '天生我才必有用！'},
+        {id: Date.now(), user: '江小白', content: '劝君更进一杯酒！'},
+        {id: Date.now(), user: '小马', content: '我姓马，风吹草地的马！'}
+      ]
+    },
+    methods: {
+      updateList(data){
+        this.list.unshift(data)
+      }
+    },
+    components: {
+      commentBox: commentBox
+    }
+  })
+
+</script>
+</body>
+</html>
+<style>
+  .comment-list {
+    display: flex;
+    justify-content: center;
+  }
+  .comment-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .comment-list ul, .comment-list .form-group {
+    width: 1050px;
+  }
+
+
+</style>
