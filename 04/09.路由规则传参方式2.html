@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+  <router-link to="/login/10/niubi">登录</router-link>
+  <router-link to="/register">注册</router-link>
+  <router-view></router-view>
+
+</div>
+
+
+<script>
+  let login = {
+    template: '<h1>登录---{{$route.params.id}}---{{$route.params.name}}</h1>',
+    created(){
+      console.log(this.$route.params.id)
+    }
+  }
+  let register = {
+    template: '<h1>注册</h1>'
+  }
+  let router = new VueRouter({
+    routes:[
+      {path:'/login/:id/:name', component: login},
+      {path:'/register', component: register}
+    ]
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+
+    },
+    router: router
+  })
+
+</script>
+</body>
+</html>
