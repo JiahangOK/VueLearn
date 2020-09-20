@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="firstname"> +
+  <input type="text" v-model="lastname"> =
+  <input type="text" v-model="fullname">
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      firstname: '',
+      lastname: '',
+      fullname: ''
+    },
+    methods: {
+    },
+    watch:{ // 监视data中指定数据的变化，触发watch对应的函数
+      "firstname": function (newVal, oldVal){
+        console.log('监视到了firstname的变化' + newVal + '===' + oldVal)
+        // this.fullname = this.firstname + ' ' + this.lastname
+        this.fullname = newVal + ' ' + this.lastname
+      },
+      'lastname': function(newVal){
+        this.fullname = this.firstname + ' ' + newVal
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

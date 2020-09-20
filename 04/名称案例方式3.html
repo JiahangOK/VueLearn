@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="firstname"> +
+  <input type="text" v-model="lastname"> =
+  <input type="text" v-model="fullname">
+
+  <h3>{{fullname}}</h3>
+  <h3>{{fullname}}</h3>
+  <h3>{{fullname}}</h3>
+</div>
+
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      firstname: '',
+      lastname: ''
+    },
+    methods: {
+    },
+    computed: {
+      "fullname": function (){
+        console.log('fullname get')
+        return this.firstname + " " + this.lastname
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

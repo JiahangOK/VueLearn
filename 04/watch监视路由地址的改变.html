@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+
+</head>
+<body>
+<div id="app">
+  <!--  <a href="#/login">登录</a>-->
+  <!--  <a href="#/register">注册</a>-->
+  <!--  router-link默认是a链接-->
+  <router-link to="/login">登录</router-link>
+  <router-link to="/register">注册</router-link>
+
+  <router-view></router-view>
+
+</div>
+
+
+<script>
+  let login = {
+    template: '<h1>登录组件</h1>'
+  }
+  let register = {
+    template: '<h1>注册组件</h1>'
+  }
+  let routerObj = new VueRouter({
+    // route表示路由匹配规则
+    routes: [
+      // {path:'/', component: login},
+      {path: '/', redirect: '/login'}, // 重定向
+      {path: '/login', component: login},
+      {path: '/register', component: register}
+    ]
+  })
+  let vm = new Vue({
+    el: '#app',
+    data: {},
+    methods: {},
+    router: routerObj, // 将路由规则对象注册到vm实例上，用于监听url变化，然后展示对应图像
+    watch: {
+      '$route.path': function (newVal, oldVal) {
+        if(newVal === '/login'){
+          console.log('欢迎进入登录页面')
+        }else if(newVal === '/register'){
+          console.log('欢迎进入注册页面')
+        }
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
